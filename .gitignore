@@ -1,0 +1,11 @@
+.DS_Store
+*.png
+20180408/*
+mcx/*
+output/*
+__pycache__/*
+stuff/*
+output_first_train/*
+utils/__pycache__/*
+inverse/__pycache__/*
+generator/__pycache__/*

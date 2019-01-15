@@ -1,0 +1,13 @@
+{
+    "train": true,
+    "absorb_file": "input/coefficients.csv",
+    "session_id": "train_0",
+    "num_photon": 500000000.0,
+    "wavelength_file": "input/wavelength.csv",
+    "geometry_file": "input_mcx/train.json",
+    "medium_n": 1.457,
+    "voxel_size": 0.25,
+    "input_file": "generator/parameter/parameter_0.json",
+    "photon_batch": 50000000.0,
+    "binary_path": "mcx/bin/mcx"
+}

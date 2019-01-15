@@ -1,0 +1,23 @@
+{
+
+	"session_id": "test_artery",
+	"train": false,
+
+	"num_photon": 5e8,
+	"photon_batch": 5e7,
+	"voxel_size": 0.5,	
+
+	"binary_path": "mcx/bin/mcx",
+
+	"medium_n": 1,
+	"detector_na": 0.866,
+	"explain": "set this detector_na and medium_n to let critical=60",
+
+	"absorb_file": "input/coefficients.csv",
+	"input_file": "input/parameters.json",
+	"wavelength_file": "input/artery_wavelength.csv",
+	"fiber_file": "input/fiber.csv",
+	"geometry_file": "input_mcx/artery.json"
+
+
+}

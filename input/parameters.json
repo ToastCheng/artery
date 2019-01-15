@@ -1,0 +1,60 @@
+{
+	"skin":{
+		"blood_volume_fraction": 0.5,
+		"ScvO2": 0.7,
+		"water_volume": 0,
+		"fat_volume": 0,
+		"melanin_volume": 0.01,
+		"n": 1.40,
+		"g": 0.94,
+		"muspx": 5.17,
+		"fray": 0,
+		"bmie": 1.0
+	},
+
+	"fat":{
+		"blood_volume_fraction": 0,
+		"ScvO2": 0,
+		"water_volume": 0,
+		"fat_volume": 1,
+		"melanin_volume": 0,
+		"n": 1.40,
+		"g": 0.94,
+		"muspx": 5.17,
+		"fray": 0,
+		"bmie": 1.0
+	},
+
+	"muscle":{
+		"blood_volume_fraction": 0.05,
+		"ScvO2": 0.80,
+		"water_volume": 0.75,
+		"fat_volume": 0,
+		"melanin_volume": 0,
+		"n": 1.40,
+		"g": 0.94,
+		"muspx": 5.17,
+		"fray": 0.0,
+		"bmie": 1.0
+	},
+
+	"artery":{
+		"blood_volume_fraction": 1.0,
+		"ScvO2": 0.70,
+		"water_volume": 0.95,
+		"fat_volume": 0,
+		"melanin_volume": 0,
+		"n": 1.40,
+		"g": 0.94,
+		"muspx": 10.0,
+		"fray": 0.0,
+		"bmie": 1.0
+	},
+
+	"geometry":{
+		"skin_thickness": 1,
+		"fat_thickness": 1,
+		"artery_radius": 1
+	}
+
+}

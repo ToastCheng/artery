@@ -1,0 +1,13 @@
+{
+    "session_id": "test_whiteMC",
+    "train": true,
+    "num_photon": 1000000.0,
+    "photon_batch": 1000000.0,
+    "voxel_size": 0.25,
+    "binary_path": "mcx/bin/mcx",
+    "medium_n": 1.457,
+    "absorb_file": "input/coefficients.csv",
+    "input_file": "input/parameters.json",
+    "wavelength_file": "input/wavelength.csv",
+    "geometry_file": "input_mcx/train.json"
+}

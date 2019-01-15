@@ -1,0 +1,8 @@
+{
+    "num_fiber": 1,
+    "num_photon": 4,
+    "exp_phantom_path": "",
+    "exp_live_path": "",
+    "sim_phantom_path": "",
+    "wavelength": "wavelength.csv"
+}

@@ -1,0 +1,22 @@
+{
+
+	"session_id": "test_cone",
+	"train": false,
+
+	"num_photon": 5e6,
+	"photon_batch": 5e7,
+	"voxel_size": 0.25,	
+
+	"binary_path": "mcx/bin/mcx",
+
+	"medium_n": 1.457,
+	"detector_na": 0.12,
+
+	"absorb_file": "input/coefficients.csv",
+	"input_file": "input/parameters.json",
+	"wavelength_file": "input/wavelength.csv",
+	"geometry_file": "input_mcx/case4.json"
+
+
+
+}
