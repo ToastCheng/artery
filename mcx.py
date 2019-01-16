@@ -104,12 +104,12 @@ class MCX:
 		fat_th = self.parameters["geometry"]["fat_thickness"]
 		artery_r = self.parameters["geometry"]["artery_radius"]
 
-		skin = plt.Rectangle((0, 0), 50, skin_th, fc="#d1a16e")
-		fat = plt.Rectangle((0, skin_th), 50, fat_th, fc="#b1814e")
-		muscle = plt.Rectangle((0, skin_th+fat_th), 50, 20-skin_th-fat_th, fc="#ea6935")
-		artery = plt.Circle((25, skin_th+fat_th+artery_r), radius=artery_r, fc="#437ddb")
+		skin = plt.Rectangle((0, 0), 100, skin_th, fc="#d1a16e")
+		fat = plt.Rectangle((0, skin_th), 100, fat_th, fc="#b1814e")
+		muscle = plt.Rectangle((0, skin_th+fat_th), 100, 20-skin_th-fat_th, fc="#ea6935")
+		artery = plt.Circle((50, skin_th+fat_th+artery_r), radius=artery_r, fc="#437ddb")
 
-		plt.axis([0, 50, 20, 0])
+		plt.axis([0, 100, 20, 0])
 		plt.gca().add_patch(skin)
 		plt.gca().add_patch(fat)
 		plt.gca().add_patch(muscle)
@@ -381,7 +381,8 @@ class MCX:
 			"R": r,
 			"Pos": [50.0, 50.0 + sds//2, 0.0]
 		}
-		mcx_input["Optode"]["Detector"] = det
+		mcx_input["Optode"]["Detector"] = []
+		mcx_input["Optode"]["Detector"].append(det)
 
 
 		# set seed
