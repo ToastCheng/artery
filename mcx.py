@@ -164,7 +164,6 @@ class MCX:
 						wl=wl, 
 						mch_file=os.path.join(self.mcx_output, "%s_%d_%d.mch" % (self.config["session_id"], wl, sds))
 						)
-
 					if result is None:
 						continue
 
@@ -182,10 +181,11 @@ class MCX:
 
 
 
-
+			print(np.asarray(resultss).shape)
+			print(np.asarray(results).shape)
 			# [wl, SDS, ScvO2]
 			# -> [ScvO2, SDS, wl]
-			results = np.asarray(results).transpose(2, 1, 0)
+			results = np.asarray(results).transpose(2, 3, 1, 0)
 			self.reflectance = results
 			# print(results.shape)
 
@@ -381,7 +381,7 @@ class MCX:
 			"R": r,
 			"Pos": [50.0, 50.0 + sds//2, 0.0]
 		}
-		mcx_input["Optode"]["Detector"].append(det)
+		mcx_input["Optode"]["Detector"] = det
 
 
 		# set seed

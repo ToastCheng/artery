@@ -47,8 +47,8 @@ def forward(config):
 
 	# run mcx!
 	mcx = MCX(config)
-	mcx.run()
-	# mcx.calculate_reflectance()
+	# mcx.run()
+	mcx.calculate_reflectance()
 
 
 def inverse():

@@ -85,6 +85,8 @@ class MCHHandler:
 		# [1, ScvO2]
 		result = torch.zeros(1, weight.shape[1]).float().to(device)
 
+		# print("detnum: ", self.header["detnum"])
+		
 		# seperate photon with different detector
 		for idx in range(1, self.header["detnum"]+1):
 
@@ -107,7 +109,7 @@ class MCHHandler:
 
 		# [SDS, ScvO2]
 		result = result[1:]
-
+		# print("result: ", result.shape)
 		return result.cpu().numpy()/self.header["total_photon"], (skin_portion, fat_portion, muscle_portion, artery_portion)
 		
 	def _make_tissue_white(self, wl):
