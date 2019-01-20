@@ -103,13 +103,16 @@ class MCX:
 		skin_th = self.parameters["geometry"]["skin_thickness"]
 		fat_th = self.parameters["geometry"]["fat_thickness"]
 		artery_r = self.parameters["geometry"]["artery_radius"]
+		x_size = self.parameters["boundary"]["x_size"]
+		y_size = self.parameters["boundary"]["y_size"]
+		z_size = self.parameters["boundary"]["z_size"]
 
-		skin = plt.Rectangle((0, 0), 100, skin_th, fc="#d1a16e")
-		fat = plt.Rectangle((0, skin_th), 100, fat_th, fc="#b1814e")
-		muscle = plt.Rectangle((0, skin_th+fat_th), 100, 20-skin_th-fat_th, fc="#ea6935")
-		artery = plt.Circle((50, skin_th+fat_th+artery_r), radius=artery_r, fc="#437ddb")
+		skin = plt.Rectangle((0, 0), y_size, skin_th, fc="#d1a16e")
+		fat = plt.Rectangle((0, skin_th), y_size, fat_th, fc="#b1814e")
+		muscle = plt.Rectangle((0, skin_th+fat_th), y_size, 20-skin_th-fat_th, fc="#ea6935")
+		artery = plt.Circle((y_size//2, skin_th+fat_th+artery_r), radius=artery_r, fc="#437ddb")
 
-		plt.axis([0, 100, 20, 0])
+		plt.axis([0, y_size, 20, 0])
 		plt.gca().add_patch(skin)
 		plt.gca().add_patch(fat)
 		plt.gca().add_patch(muscle)
@@ -141,8 +144,8 @@ class MCX:
 
 		for mc2 in mc2_list:
 			fig = plt.figure(figsize=(10,16))
-			d = load_mc2(mc2, [100, 100, 300])
-			plt.imshow(d[50,:,:100].T)
+			d = load_mc2(mc2, [x_size, y_size, z_size])
+			plt.imshow(d[x_size//2,:,:100].T)
 			name = mc2.split('/')[-1].split('.')[0]
 			plt.title(name)
 			plt.xlabel('y axis')
@@ -372,7 +375,7 @@ class MCX:
 
 		# artery 
 		mcx_input["Shapes"][4]["Cylinder"]["C0"] = [x_size, y_size//2, skin_th+fat_th+artery_r]
-		mcx_input["Shapes"][4]["Cylinder"]["C1"] = [1, y_size//2, skin_th+fat_th+artery_r]
+		mcx_input["Shapes"][4]["Cylinder"]["C1"] = [0, y_size//2, skin_th+fat_th+artery_r]
 		mcx_input["Shapes"][4]["Cylinder"]["R"] = artery_r
 
 		# load fiber
@@ -380,7 +383,8 @@ class MCX:
 		sds = self._convert_unit(sds)
 		r = self._convert_unit(r)
 
-		mcx_input["Optode"]["Source"]["Pos"][1] = y_size - sds//2
+		mcx_input["Optode"]["Source"]["Pos"][0] = x_size//2
+		mcx_input["Optode"]["Source"]["Pos"][1] = y_size//2 - sds//2
 
 		det = {
 			"R": r,
