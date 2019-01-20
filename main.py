@@ -47,7 +47,7 @@ def forward(config):
 
 	# run mcx!
 	mcx = MCX(config)
-	# mcx.run()
+	mcx.run()
 	mcx.calculate_reflectance()
 
 
