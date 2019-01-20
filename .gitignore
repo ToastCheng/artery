@@ -9,3 +9,4 @@ output_first_train/*
 utils/__pycache__/*
 inverse/__pycache__/*
 generator/__pycache__/*
+*.ipynb
