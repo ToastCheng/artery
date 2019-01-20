@@ -352,22 +352,27 @@ class MCX:
 		skin_th = self.parameters["geometry"]["skin_thickness"]
 		fat_th = self.parameters["geometry"]["fat_thickness"]
 		artery_r = self.parameters["geometry"]["artery_radius"]
+		x_size = self.parameters["geometry"]["x_size"]
+		y_size = self.parameters["geometry"]["y_size"]
+		z_size = self.parameters["geometry"]["z_size"]
+
+		mcx_input["Domain"]["Dim"] = [x_size, y_size, z_size]
 
 		# skin
 		mcx_input["Shapes"][1]["Subgrid"]["O"] = [1, 1, 1]
-		mcx_input["Shapes"][1]["Subgrid"]["Size"] = [100, 100, skin_th]
+		mcx_input["Shapes"][1]["Subgrid"]["Size"] = [x_size, y_size, skin_th]
 
 		# fat
 		mcx_input["Shapes"][2]["Subgrid"]["O"] = [1, 1, 1+skin_th]
-		mcx_input["Shapes"][2]["Subgrid"]["Size"] = [100, 100, 300-skin_th]		
+		mcx_input["Shapes"][2]["Subgrid"]["Size"] = [x_size, y_size, fat_th]		
 
 		# muscle
 		mcx_input["Shapes"][3]["Subgrid"]["O"] = [1, 1, 1+skin_th+fat_th]
-		mcx_input["Shapes"][3]["Subgrid"]["Size"] = [100, 100, 300-skin_th-fat_th]
+		mcx_input["Shapes"][3]["Subgrid"]["Size"] = [x_size, y_size, z_size-skin_th-fat_th]
 
 		# artery 
-		mcx_input["Shapes"][4]["Cylinder"]["C0"] = [100, 50, skin_th+fat_th+artery_r]
-		mcx_input["Shapes"][4]["Cylinder"]["C1"] = [0, 50, skin_th+fat_th+artery_r]
+		mcx_input["Shapes"][4]["Cylinder"]["C0"] = [x_size, y_size//2, skin_th+fat_th+artery_r]
+		mcx_input["Shapes"][4]["Cylinder"]["C1"] = [1, y_size//2, skin_th+fat_th+artery_r]
 		mcx_input["Shapes"][4]["Cylinder"]["R"] = artery_r
 
 		# load fiber
@@ -375,11 +380,11 @@ class MCX:
 		sds = self._convert_unit(sds)
 		r = self._convert_unit(r)
 
-		mcx_input["Optode"]["Source"]["Pos"][1] = 50.0 - sds//2
+		mcx_input["Optode"]["Source"]["Pos"][1] = y_size - sds//2
 
 		det = {
 			"R": r,
-			"Pos": [50.0, 50.0 + sds//2, 0.0]
+			"Pos": [x_size//2, y_size//2 + sds//2, 0.0]
 		}
 		mcx_input["Optode"]["Detector"] = []
 		mcx_input["Optode"]["Detector"].append(det)
