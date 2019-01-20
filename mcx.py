@@ -299,8 +299,8 @@ class MCX:
 		mcx_input["Domain"]["Media"][1]["n"] = self.parameters["skin"]["n"]
 
 		# fat
-		mcx_input["Domain"]["Media"][3]["name"] = "fat"
-		mcx_input["Domain"]["Media"][3]["mua"] = self._calculate_mua(
+		mcx_input["Domain"]["Media"][2]["name"] = "fat"
+		mcx_input["Domain"]["Media"][2]["mua"] = self._calculate_mua(
 			idx, 
 			self.parameters["fat"]["blood_volume_fraction"], 
 			self.parameters["fat"]["ScvO2"], 
@@ -308,15 +308,15 @@ class MCX:
 			self.parameters["fat"]["fat_volume"],
 			self.parameters["fat"]["melanin_volume"]
 			)
-		mcx_input["Domain"]["Media"][3]["mus"] = self._calculate_mus(
+		mcx_input["Domain"]["Media"][2]["mus"] = self._calculate_mus(
 			idx,
 			self.parameters["fat"]["muspx"], 
 			self.parameters["fat"]["fray"], 
 			self.parameters["fat"]["bmie"],
 			self.parameters["fat"]["g"]
 			)
-		mcx_input["Domain"]["Media"][3]["g"] = self.parameters["fat"]["g"]
-		mcx_input["Domain"]["Media"][3]["n"] = self.parameters["fat"]["n"]
+		mcx_input["Domain"]["Media"][2]["g"] = self.parameters["fat"]["g"]
+		mcx_input["Domain"]["Media"][2]["n"] = self.parameters["fat"]["n"]
 
 		# muscle
 		mcx_input["Domain"]["Media"][3]["name"] = "muscle"
