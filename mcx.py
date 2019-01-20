@@ -352,9 +352,9 @@ class MCX:
 		skin_th = self.parameters["geometry"]["skin_thickness"]
 		fat_th = self.parameters["geometry"]["fat_thickness"]
 		artery_r = self.parameters["geometry"]["artery_radius"]
-		x_size = self.parameters["geometry"]["x_size"]
-		y_size = self.parameters["geometry"]["y_size"]
-		z_size = self.parameters["geometry"]["z_size"]
+		x_size = self.parameters["boundary"]["x_size"]
+		y_size = self.parameters["boundary"]["y_size"]
+		z_size = self.parameters["boundary"]["z_size"]
 
 		mcx_input["Domain"]["Dim"] = [x_size, y_size, z_size]
 

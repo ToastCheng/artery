@@ -54,7 +54,10 @@
 	"geometry":{
 		"skin_thickness": 1,
 		"fat_thickness": 1,
-		"artery_radius": 1,
+		"artery_radius": 1
+	},
+
+	"boundary":{
 		"x_size": 70,
 		"y_size": 150,
 		"z_size": 200
