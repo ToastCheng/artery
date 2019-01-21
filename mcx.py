@@ -70,6 +70,7 @@ class MCX:
 		self.plot_mc2 = os.path.join(self.session, 'plot_mc2')
 		self.result = os.path.join(self.session, 'result')
 		self.mcx_output = os.path.join(self.session, 'mcx_output')
+		self.json_output = os.path.join(self.session, 'json_output')
 
 		self.reflectance = None
 
@@ -98,6 +99,9 @@ class MCX:
 
 		if not os.path.isdir(self.mcx_output):
 			os.mkdir(self.mcx_output)
+
+		if not os.path.isdir(self.json_output):
+			os.mkdir(self.json_output)
 
 		# plot figure
 		skin_th = self.parameters["geometry"]["skin_thickness"]
@@ -136,9 +140,9 @@ class MCX:
 				print("wavelength: ", wl)
 				print("sds: ", self.fiber.values[sds_idx][0])
 				print(command)
-				os.chdir("mcx/bin")
-				os.system(command)
-				os.chdir("../..")
+				# os.chdir("mcx/bin")
+				# os.system(command)
+				# os.chdir("../..")
 
 		mc2_list = glob(os.path.join(self.mcx_output, "*.mc2"))
 
@@ -169,6 +173,8 @@ class MCX:
 						)
 					if result is None:
 						continue
+
+
 
 					portions["wavelength"].append(wl)
 					portions["sds"].append(sds)
@@ -337,7 +343,15 @@ class MCX:
 		
 		# artery
 		mcx_input["Domain"]["Media"][4]["name"] = "artery"
-		mcx_input["Domain"]["Media"][4]["mua"] = 0
+		mcx_input["Domain"]["Media"][4]["mua"] = self._calculate_mua(
+			idx, 
+			self.parameters["artery"]["blood_volume_fraction"], 
+			self.parameters["artery"]["ScvO2"], 
+			self.parameters["artery"]["water_volume"],
+			self.parameters["artery"]["fat_volume"],
+			self.parameters["artery"]["melanin_volume"]
+			)
+		# mcx_input["Domain"]["Media"][4]["mua"] = 0
 		mcx_input["Domain"]["Media"][4]["mus"] = self._calculate_mus(
 			idx,
 			self.parameters["artery"]["muspx"], 
@@ -403,6 +417,9 @@ class MCX:
 
 		# save the .json file in the output folder
 		with open(self.config["geometry_file"], 'w+') as f:
+			json.dump(mcx_input, f, indent=4)
+
+		with open(os.path.join(self.json_output, "input_%d.json" % idx), 'w+') as f:
 			json.dump(mcx_input, f, indent=4)
 
 	# def _make_mcx_input(self, idx):

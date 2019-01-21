@@ -40,7 +40,7 @@
 
 	"artery":{
 		"blood_volume_fraction": 1.0,
-		"ScvO2": 0.70,
+		"ScvO2": 0.95,
 		"water_volume": 0,
 		"fat_volume": 0,
 		"melanin_volume": 0,

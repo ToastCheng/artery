@@ -67,11 +67,19 @@ class MCHHandler:
 		# [photon, medium]
 		path_length = df.iloc[:, 1:-1].values
 
-		# calculate percentage
-		skin_portion = path_length.sum(0)[0]/path_length.sum()
-		fat_portion = path_length.sum(0)[1]/path_length.sum()
-		muscle_portion = path_length.sum(0)[2]/path_length.sum()
-		artery_portion = path_length.sum(0)[3]/path_length.sum()
+		# 1計算路徑長的比例
+		# skin_portion = path_length.sum(0)[0]/path_length.sum()
+		# fat_portion = path_length.sum(0)[1]/path_length.sum()
+		# muscle_portion = path_length.sum(0)[2]/path_length.sum()
+		# artery_portion = path_length.sum(0)[3]/path_length.sum()
+
+		# 2計算實際路徑長 in grid
+		# skin_portion = path_length.mean(0)[0]
+		# fat_portion = path_length.mean(0)[1]
+		# muscle_portion = path_length.mean(0)[2]
+		# artery_portion = path_length.mean(0)[3]
+
+
 
 		path_length = torch.tensor(path_length).float().to(device)
 
@@ -81,7 +89,19 @@ class MCHHandler:
 
 		# [photon, ScvO2]
 		weight = torch.exp(-torch.matmul(path_length, mua) *self.header["unitmm"]) 
-		
+
+		# NEW 
+		# df["weight"] = weight.tolist()
+		# 3 計算實際路徑長*權重 (in 95%)
+		# print(path_length.shape)
+		# print(weight[:, 96].shape)
+		path_length = (path_length * weight[:, 96].unsqueeze(1))
+		skin_portion = (path_length.mean(0)[0] ).tolist()
+		fat_portion = (path_length.mean(0)[1]).tolist()
+		muscle_portion = (path_length.mean(0)[2]).tolist()
+		artery_portion = (path_length.mean(0)[3]).tolist()
+
+
 		# [1, ScvO2]
 		result = torch.zeros(1, weight.shape[1]).float().to(device)
 
